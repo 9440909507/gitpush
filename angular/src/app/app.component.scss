@@ -1,0 +1,48 @@
+// mixins
+@mixin border {
+    border: 1px solid red;
+    padding: 10px;
+    background-color: grey;
+}
+//parametric mixin
+@mixin border-radius-without-param {
+    border-radius: 10px;
+    -webkit-border-radius: 10px; //chrome, safari
+    -moz-border-radius: 10px;    // mozilla
+    -ms-border-radius: 10px;     // IE or Edge
+}
+@mixin border-radius-with-param($radius) {
+    border-radius: $radius;
+    -webkit-border-radius: $radius; //chrome, safari
+    -moz-border-radius: $radius;    // mozilla
+    -ms-border-radius: $radius;     // IE or Edge
+}
+
+// variables
+$primaryColor: green;
+$fontSize: 40px;
+$font-family: 'Courier New', Courier, monospace;
+// calculations
+$width: 100% / 2;
+h1 {
+    color: $primaryColor;
+    font-size: $fontSize;
+    font-family: $font-family;
+    width: $width;
+    @include border;
+    @include border-radius-with-param(30px); //with param
+    // nested css
+    h2 {
+        color: aqua;
+        width: $width;
+    }
+    h3 {
+        color: beige;
+        width: $width;
+    }
+}
+.for-loop {
+    color: $primaryColor;
+    @include border;
+    @include border-radius-without-param; //without param
+}
